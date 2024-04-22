@@ -60,31 +60,31 @@ Partindo para a implementação do projeto, iremos desenvolver do início, sem a
 
 Utlizado o BaseService para centralizar a lógica de comunicação com a API, visando reutilização de código, simplificação da manutenção, facilitação da extensão, padronização e melhor testabilidade. Ele encapsula operações comuns como leitura e pesquisa, fornecendo métodos genéricos que outros serviços podem usar para interagir de forma consistente e eficiente com a API.
 
-export class BaseService<T> {
+    export class BaseService<T> {
 
-    baseUrl = environment.apiUrl;
-
-    constructor(protected http: HttpClient) { }
-
-    read(): Observable<T[]> {
-        return this.http.get<{ data: T[] }>(`${this.baseUrl}`).pipe(
-            map(response => response.data),
-            catchError((e: any) => {
-                return EMPTY;
-            })
-        );
+      baseUrl = environment.apiUrl;
+  
+      constructor(protected http: HttpClient) { }
+  
+      read(): Observable<T[]> {
+          return this.http.get<{ data: T[] }>(`${this.baseUrl}`).pipe(
+              map(response => response.data),
+              catchError((e: any) => {
+                  return EMPTY;
+              })
+          );
+      }
+  
+      searchCards(query: string): Observable<T[]> {
+          const params = { q: query };
+          return this.http.get<{ data: T[] }>(this.baseUrl, { params }).pipe(
+              map(response => response.data),
+              catchError((e: any) => {
+                  return EMPTY;
+              })
+          );
+      }
     }
-
-    searchCards(query: string): Observable<T[]> {
-        const params = { q: query };
-        return this.http.get<{ data: T[] }>(this.baseUrl, { params }).pipe(
-            map(response => response.data),
-            catchError((e: any) => {
-                return EMPTY;
-            })
-        );
-    }
-}
 
 # Create e Update
 
@@ -118,23 +118,23 @@ export function cardCountValidator(min: number, max: number): ValidatorFn {
     };
 }
 
-export function uniqueCardNameValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-        const cards = control.value as Array<any>;
-        if (!cards || cards.length === 0) {
-            return null;
-        }
-
-        const cardCounts = cards.reduce((counts, card) => {
-            counts[card.name] = (counts[card.name] || 0) + 1;
-            return counts;
-        }, {});
-
-        const invalidNames = Object.keys(cardCounts).filter(name => cardCounts[name] > 4);
-
-        return invalidNames.length > 0 ? { uniqueCardName: true } : null;
-    };
-}
+    export function uniqueCardNameValidator(): ValidatorFn {
+        return (control: AbstractControl): { [key: string]: any } | null => {
+            const cards = control.value as Array<any>;
+            if (!cards || cards.length === 0) {
+                return null;
+            }
+    
+            const cardCounts = cards.reduce((counts, card) => {
+                counts[card.name] = (counts[card.name] || 0) + 1;
+                return counts;
+            }, {});
+    
+            const invalidNames = Object.keys(cardCounts).filter(name => cardCounts[name] > 4);
+    
+            return invalidNames.length > 0 ? { uniqueCardName: true } : null;
+        };
+    }
 
 # Armazenamento dos Baralhos em Memória
 
@@ -184,12 +184,12 @@ countDecks(): number {
 
 Método permite buscar cartas da API com base em um critério de pesquisa fornecido, retornando um Observable que emite os dados correspondentes. Isso é útil para implementar funcionalidades de busca e filtragem na sua aplicação Angular, mantendo a lógica de comunicação com a API encapsulada dentro de um serviço reutilizável.
 
-searchCards(query: string): Observable<T[]> {
-    const params = { q: query };
-    return this.http.get<{ data: T[] }>(this.baseUrl, { params }).pipe(
-        map(response => response.data),
-        catchError((e: any) => {
-            return EMPTY;
-        })
-    );
-}
+    searchCards(query: string): Observable<T[]> {
+        const params = { q: query };
+        return this.http.get<{ data: T[] }>(this.baseUrl, { params }).pipe(
+            map(response => response.data),
+            catchError((e: any) => {
+                return EMPTY;
+            })
+        );
+    }
