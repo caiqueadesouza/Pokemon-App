@@ -88,7 +88,7 @@ Utlizado o BaseService para centralizar a lógica de comunicação com a API, vi
 
 # Create e Update
 
-Reutilizaçãoc omponentes sempre que possível, use lógica condicional no template, gerencie o estado do formulário e manipule as rotas para determinar o comportamento do componente. Manter o código organizado e fácil de entender é fundamental para garantir a eficácia e a manutenibilidade do componente.
+Reutilização componentes sempre que possível, use lógica condicional no template, gerencie o estado do formulário e manipule as rotas para determinar o comportamento do componente. Manter o código organizado e fácil de entender é fundamental para garantir a eficácia e a manutenibilidade do componente.
 
 # Componentização 
 
