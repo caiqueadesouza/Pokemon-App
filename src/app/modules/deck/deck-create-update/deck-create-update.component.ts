@@ -78,7 +78,7 @@ export class DeckCreateUpadateComponent implements OnInit {
   buildForm(): void {
     this.form = this._formBuilder.group({
       name: ['', Validators.required],
-      cards: [[], [cardCountValidator(2, 60), uniqueCardNameValidator()]]
+      cards: [[], [cardCountValidator(24, 60), uniqueCardNameValidator()]]
     });
   }
 
