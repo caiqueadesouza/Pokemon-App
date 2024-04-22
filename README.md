@@ -54,7 +54,7 @@ Este repositório contém uma aplicação Angular criada com o objetivo de avali
 
 # Implementando o Projeto
 
-Partindo para a implementação do projeto, iremos desenvolver do início, sem as bibliotecas, e em seguida refatorando etapa por etapa.
+Na implementação, foi priorizado a criação de código limpo e legível, seguindo as melhores práticas recomendadas pelo Angular. Adotando uma abordagem orientada a objetos (POO), aproveitando as capacidades do Angular e suas bibliotecas complementares para garantir uma estrutura robusta e modular.
 
 # Services
 
@@ -97,15 +97,16 @@ Componentização no Angular é a prática de dividir a interface do usuário em
 # Estrutura de Pastas
 
 ├── app/
-   ├── colors/        # Arquivos relacionados às cores da aplicação
-   ├── helpers/       # Funções e utilitários auxiliares                   
-   ├── models/        # Módulos da aplicação
-   ├── services/      # Serviços compartilhados
-   ├── pages/         # Componentes de páginas principais
-   ├── shared/        # Componentes e utilitários compartilhados
+   ├── _core/           # Arquivos relacionados a cores da aplicação
+   ├── _helpers/        # Funções e utilitários auxiliares                   
+   ├── _models/         # Módulos da aplicação
+   ├── _services/       # Serviços compartilhados
+   ├── modules/         # Componentes de páginas principais
+   ├── shared/          # Componentes e utilitários compartilhados
       ├── components/   # Componentes reutilizáveis  
-      ├── pipes/        # Componentes reutilizáveis  
-├── app.component.ts    # Componente raiz da aplicação├── app.module.ts     
+      ├── pipes/        # Pipes global
+├── app.component.ts    # Componente raiz da aplicação
+├── app.module.ts     
 
 # Validação 
 
