@@ -141,45 +141,45 @@ export function cardCountValidator(min: number, max: number): ValidatorFn {
 
 Esses métodos formam uma maneira simples de gerenciar operações CRUD (criar, ler, atualizar e excluir) para baralhos em memória dentro de sua aplicação Angular. O uso de Observable permite uma comunicação reativa e assíncrona entre componentes que dependem desses dados.
 
-ddToDeck(deck: Deck): boolean {
-    deck.id = uuidv4();
-    this.deck.push(deck);
-    this.deckSubject.next([...this.deck]);
-    return true;
-}
-
-getDeck(): Observable<Deck[]> {
-    return this.deckSubject.asObservable();
-}
-
-getDeckById(deckId: string): Observable<Deck | undefined> {
-    return this.deckSubject.asObservable().pipe(
-        map(decks => decks.find(deck => deck.id === deckId))
-    );
-}
-
-updateDeck(deck: Deck): boolean {
-    const index = this.deck.findIndex(d => d.id === deck.id);
-    if (index !== -1) {
-        this.deck[index] = { ...deck };
-        this.deckSubject.next([...this.deck]);
-        return true;
-    } else {
-        return false;
-    }
-}
-
-deleteDeck(deckId: string): void {
-    const index = this.deck.findIndex(deck => deck.id === deckId);
-    if (index !== -1) {
-        this.deck.splice(index, 1);
-        this.deckSubject.next([...this.deck]);
-    }
-}
-
-countDecks(): number {
-    return this.deck.length;
-}
+        ddToDeck(deck: Deck): boolean {
+            deck.id = uuidv4();
+            this.deck.push(deck);
+            this.deckSubject.next([...this.deck]);
+            return true;
+        }
+        
+        getDeck(): Observable<Deck[]> {
+            return this.deckSubject.asObservable();
+        }
+        
+        getDeckById(deckId: string): Observable<Deck | undefined> {
+            return this.deckSubject.asObservable().pipe(
+                map(decks => decks.find(deck => deck.id === deckId))
+            );
+        }
+        
+        updateDeck(deck: Deck): boolean {
+            const index = this.deck.findIndex(d => d.id === deck.id);
+            if (index !== -1) {
+                this.deck[index] = { ...deck };
+                this.deckSubject.next([...this.deck]);
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        deleteDeck(deckId: string): void {
+            const index = this.deck.findIndex(deck => deck.id === deckId);
+            if (index !== -1) {
+                this.deck.splice(index, 1);
+                this.deckSubject.next([...this.deck]);
+            }
+        }
+        
+        countDecks(): number {
+            return this.deck.length;
+        }
 
 # Filtros na API
 
